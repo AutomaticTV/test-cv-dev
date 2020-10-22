@@ -69,4 +69,4 @@ In the field (0, 0) is the center of the field. In the image the (0, 0) is the t
 ![alt text](https://github.com/AutomaticTV/test-cv-developer/blob/master/images/exampleFrame234.PNG "Field coordinates")
 
 ## Final comments
-* Upload solution code in a private repository and send us the link. We will value both the solution and quality of the code made.
+* Upload solution code in a private repository together with the resulting text file and send us the link. We will value both the solution and quality of the code made.
