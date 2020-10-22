@@ -1,28 +1,37 @@
 # Sports Intelligence Test (C++)
 
 ## Task
-Build an application in C++ which aims to, given the (noisy) output from a player and ball detector of a soccer match, detect game situations.
+Build an application in C++ which aims to, given the (noisy) output from a player and ball detector of a soccer match, detect specific game situations.
 
-Specifically, the application should:
+Specifically, the application should
  * Parse the input file and process each frame
+ * Preprocess the data and try to infer the following Soccer situations from it: ***CORNER*** and ***GOAL_KICK***.
  * Generate a new text file with the detected game situations.
+ 
+ Take into account
+ * It is possible to use the future (or the past) to take a decision at any moment, but no more than 7 seconds in the future.
+ * Players may dissapear from the field of view or be missdetected by our detector and the ball may not be available or be wrongly detected (false positive), however it can be safely assumed this will not happen very often.
+ * Try to be as robust as possible. 
+ * The code does not have to be fully optimized, but any speed-ups/optimizations are appreciated.
+ 
+ ---
  
  The input file **players_and_ball.txt** is structured using the following format. Each frame begins with
  
- F: video time in HH:MM:SS format.
+ F: video time in HH:MM:SS.
  
- Then for each frame, each players is marked as:
+ Then for each frame, each player is marked as:
  
  P:**Track_ID**,**X1**,**Y1**,**X2**,**Y2**,**XF**,**YF**
  
  where **Track_ID** denotes the track number of the detection (if a player with the same **Track_ID** appears in two different frames, it could be assumed that it corresponds to the same player),
- **X1**,**Y1**,**X2**,**Y2** denotes the position in texture coordinates of the player's bounding box (0 <= X1,Y1,X2,Y2 <= 1) on the panorama. Multiplying this values to the panorama width and height would transform the coordinates to pixels.
- **XF**, **YF** denotes the position of the players feet on the field in meters. Note that a football field is 105 x 68 meters and that the **[0,0]** position demarks the center of the field.
+ **X1**,**Y1**,**X2**,**Y2** denotes the position in texture coordinates of the player's bounding box (0 <= **X1**,**Y1**,**X2**,**Y2** <= 1). Multiplying these values with the width and height would transform the coordinates to pixels.
+ Finally, **XF**, **YF** denotes the position of the players feet on the field in meters. Note that a football field is 105 x 68 meters and that the **[0,0]** position demarks the center of the field (see image below).
  
-and if the ball is detetected, it is written as:
+Also, if the ball is detetected, it is written as:
 
- B:**XF**,**YF**
-
+ B:**XF**,**YF** 
+ 
 where **XF**,**YF** denotes the position of the ball on the field.
 
 As an example, the following frame was extracted from the minute 00:04:43 of the match, has 21 players and the ball.
@@ -52,12 +61,12 @@ P:227,0.439279,0.36292,0.442775,0.400392,-16.605,-8.36074
 B:-3.51777,-9.91208
 ```
 
-* **Coordinate systems** In the field (0, 0) is the center of the field. In the image the (0, 0) is the top-left corner.
+## Coordinate systems
+In the field (0, 0) is the center of the field. In the image the (0, 0) is the top-left corner.
 ![alt text](https://github.com/AutomaticTV/test-cv-developer/blob/master/images/coordinateSystems.png "Coordinate systems")
 
 ## Visual Example
 ![alt text](https://github.com/AutomaticTV/test-cv-developer/blob/master/images/exampleFrame234.PNG "Field coordinates")
 
 ## Final comments
-* The field is 105m * 68m.
 * Upload solution code in a private repository and send us the link. We will value both the solution and quality of the code made.
