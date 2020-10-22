@@ -8,14 +8,21 @@ Specifically, the application should:
  * Generate a new text file with the detected game situations.
  
  The input file **players_and_ball.txt** is structured using the following format. Each frame begins with
+ 
  F: video time in HH:MM:SS format.
+ 
  Then for each frame, each players is marked as:
+ 
  P:**Track_ID**,**X1**,**Y1**,**X2**,**Y2**,**XF**,**YF**
+ 
  where **Track_ID** denotes the track number of the detection (if a player with the same **Track_ID** appears in two different frames, it could be assumed that it corresponds to the same player),
  **X1**,**Y1**,**X2**,**Y2** denotes the position in texture coordinates of the player's bounding box (0 <= X1,Y1,X2,Y2 <= 1) on the panorama. Multiplying this values to the panorama width and height would transform the coordinates to pixels.
  **XF**, **YF** denotes the position of the players feet on the field in meters. Note that a football field is 105 x 68 meters and that the **[0,0]** position demarks the center of the field.
- and if the ball is detetected, it is written as:
+ 
+and if the ball is detetected, it is written as:
+
  B:**XF**,**YF**
+
 where **XF**,**YF** denotes the position of the ball on the field.
 
 As an example, the following frame was extracted from the minute 00:04:43 of the match, has 21 players and the ball.
